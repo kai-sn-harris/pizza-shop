@@ -17,11 +17,14 @@ async function addPizza(pizza_id, size, edits=null) {
         pizza.size = size;
         if(edits) {
             // handle edits here
-            await pizza.save()
         }
-        await pizza.save();
-        console.log(pizza)
-        return { status: "Successfully added pizza", ids: { id: pizza._id, pizza_id: pizza.pizza_id } }
+        try {
+            await pizza.save();
+            console.log(pizza);
+                return { status: "Successfully added pizza", ids: { id: pizza._id, pizza_id: pizza.pizza_id } }
+        } catch(err) {
+            return { status: "Something went wrong", error: err };
+        }
     } else {
         return { message: "Unkown Pizza ID" }
     }

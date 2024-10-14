@@ -34,6 +34,7 @@ const pizzaSchema = mongoose.Schema({
         required: true,
         validate: {
             validator: function(value) {
+                if(this.name === "bruschetta") return value === "S";
                 return ["S", "M", "L", "F"].includes(value);
             },
             message: "Pizza size must be S, M, L, or F (small, medium, large, or family)"
