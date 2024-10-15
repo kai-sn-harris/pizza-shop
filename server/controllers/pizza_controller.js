@@ -1,6 +1,6 @@
 const Pizza = require("../models/pizza");
 
-const pizzaBoilerplate = require("./pizza_boilerplate");
+const pizzaBoilerplate = require("../models/pizza_boilerplate");
 
 async function getPizzas() {
     try {
@@ -19,6 +19,7 @@ async function addPizza(pizza_id, size, edits=null) {
             // handle edits here
         }
         try {
+            // price calculated in pre-save hook
             await pizza.save();
             console.log(pizza);
                 return { status: "Successfully added pizza", ids: { id: pizza._id, pizza_id: pizza.pizza_id } }

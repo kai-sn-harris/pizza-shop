@@ -52,26 +52,7 @@ const pizzaSchema = mongoose.Schema({
 });
 
 pizzaSchema.pre("save", function(next) {
-    const prices = {
-        "side": {
-            "S": 9,
-            "M": 11,
-            "L": 14,
-            "F": 17,
-        },
-        "traditional": {
-            "S": 15.90,
-            "M": 18.90,
-            "L": 21.90,
-            "F": 25.90,
-        },
-        "gourmet": {
-            "S": 17.90,
-            "M": 20.90,
-            "L": 23.90,
-            "F": 27.90,
-        },
-    };
+    let prices = require("./pizza_prices.json");
     this.price = prices[this.class][this.size];
     next();
 });
