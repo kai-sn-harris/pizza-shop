@@ -5,13 +5,7 @@ const PizzaController = require("../controllers/pizza_controller");
 const OrderController = require("../controllers/order_controller");
 
 router.get("/pizzas", async (req, res) => {
-    let pizzas = await PizzaController.getPizzas();
-    // check for error
-    if(pizzas.error) {
-        res.json({ status: 500, ...pizzas });
-    } else {
-        res.json(pizzas);
-    }
+    res.json(await PizzaController.getPizzas());
 });
 
 router.post("/pizzas/add", async (req, res) => {

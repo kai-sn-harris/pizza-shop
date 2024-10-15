@@ -7,7 +7,7 @@ async function getPizzas() {
         return await Pizza.find();
     } catch(err) {
         console.log(err);
-        return { message: "MongoDB Error Occurred", error: err }
+        return { message: "MongoDB Error Occurred when getting pizzas", error: err }
     }
 }
 
